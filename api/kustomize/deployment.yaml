@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ui-api
+  namespace: kube-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ui-api
+  template:
+    metadata:
+      labels:
+        app: ui-api
+    spec:
+      containers:
+        - name: ui-api
+          image: ui-api:v1
+          imagePullPolicy: Never
+          env:
+            - name: RABBITMQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq
+                  key: rabbitmq-password
+          ports:
+            - containerPort: 8080

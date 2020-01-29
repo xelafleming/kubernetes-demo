@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-web-server
+  namespace: kube-demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: simple-web-server
+  template:
+    metadata:
+      labels:
+        app: simple-web-server
+    spec:
+      containers:
+        - name: simple-web-server
+          image: simple-web-server:v1
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3000

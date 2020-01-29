@@ -1,0 +1,7 @@
+poller:
+  simple-web-server-base-url: http://simple-web-server:3000
+spring:
+  rabbitmq:
+    host: rabbitmq
+    password: ${RABBITMQ_PASSWORD}
+    username: user
